@@ -3,7 +3,7 @@ const bodyContainer = document.querySelector("body");
 const resetButton = document.getElementById("reset");
 const allCards = gameContainer.children;
 
-const COLORS = [
+const CARDS = [
   "red",
   "blue",
   "green",
@@ -31,9 +31,9 @@ function shuffle(array) {
   }
   return array;
 }
-let shuffledColors = shuffle(COLORS);
+let shuffledColors = shuffle(CARDS);
 
-function createDivsForColors(colorArray) {
+function createDivsForCards(colorArray) {
   for (let [i, color] of colorArray.entries()) {
     const newDiv = document.createElement("div");
     newDiv.classList.add(color);
@@ -53,8 +53,7 @@ function flipCard(event) {
 }
 
 function addToArray(event) {
-  flipped.push({ card: event.target, id: flipped.length + 1 });
-  console.log(flipped);
+  flipped.push({ card: event.target });
 }
 
 function controlMatchLogic() {
@@ -92,7 +91,6 @@ function youWonNotification() {
 function resetGame() {
   window.location.reload();
 }
-resetButton.addEventListener("click", resetGame);
 
 function handleCardClick(event) {
   if (isProcessing == false) {
@@ -103,4 +101,5 @@ function handleCardClick(event) {
   youWonNotification();
 }
 
-createDivsForColors(shuffledColors);
+resetButton.addEventListener("click", resetGame);
+createDivsForCards(shuffledColors);
